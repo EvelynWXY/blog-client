@@ -18,6 +18,7 @@ export default {
       this.page = res.page;
       this.total = res.total;
       this.blogs = res.data;
+      // res.data 有数据才会去获取用户的id
       if (res.data.length > 0) {
         this.user = res.data[0].user;
       }

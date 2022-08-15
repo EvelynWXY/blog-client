@@ -26,6 +26,9 @@ export default {
         this.page = res.page;
         this.$router.push({ path: "/", query: { page: newPage } });
       });
+    },
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
     }
   }
 };

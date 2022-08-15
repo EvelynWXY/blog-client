@@ -1,6 +1,6 @@
 <template>
   <div id="create">
-    <h1>编辑文章</h1>
+    <h1>创建文章</h1>
     <h3>文章标题</h3>
     <el-input v-model="title" @change="tips(title)"></el-input>
     <p class="msg">{{ title.length }}/30</p>

@@ -1,38 +1,27 @@
 <template>
   <div id="my">
     <section class="user-info">
-      <img src="../../assets/sweetquan.svg" alt="" class="avatar">
-      <h3>星子</h3>
+      <img :src="user.avatar" :alt="user.username" class="avatar">
+      <h3>{{ user.username }}</h3>
     </section>
     <section>
-      <div class="item">
+      <router-link class="item" v-for="blog in blogs" :key="blog.id" :to="`/detail/${blog.id}`">
         <div class="date">
-          <span class="day">27</span>
-          <span class="month">7月</span>
-          <span class="year">2022</span>
+          <span class="day">{{ splitDate(blog.createdAt).date }}</span>
+          <span class="month">{{ splitDate(blog.createdAt).month }}</span>
+          <span class="year">{{ splitDate(blog.createdAt).year }}</span>
         </div>
-        <h3>Sublime Text 使用相关</h3>
-        <p>以格式化 HTML 文件为例：
-          Sublime Text 软件 本身有自带的缩进格式化，但不能满足我们的代码格式化需求，所以需要安装对应的插件</p>
+        <h3>{{ blog.title }}</h3>
+        <p>{{ blog.description }}</p>
         <div class="actions">
-          <router-link to="/edit">编辑</router-link>
-          <a href="#">删除</a>
+          <router-link :to="`/edit/${blog.id}`">编辑</router-link>
+          <a href="#" @click.prevent="onDelete(blog.id)">删除</a>
         </div>
-      </div>
-      <div class="item">
-        <div class="date">
-          <span class="day">27</span>
-          <span class="month">7月</span>
-          <span class="year">2022</span>
-        </div>
-        <h3>Sublime Text 使用相关</h3>
-        <p>以格式化 HTML 文件为例：
-          Sublime Text 软件 本身有自带的缩进格式化，但不能满足我们的代码格式化需求，所以需要安装对应的插件</p>
-        <div class="actions">
-          <router-link to="/edit">编辑</router-link>
-          <a href="#">删除</a>
-        </div>
-      </div>
+      </router-link>
+    </section>
+    <section class="pagination">
+      <el-pagination layout="prev, pager, next" :total="total" :current-page="page" @current-change="onPageChange">
+      </el-pagination>
     </section>
   </div>
 </template>

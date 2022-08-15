@@ -2,7 +2,6 @@ import marked from "marked";
 import blog from "@/api/blog";
 
 export default {
-  name: "Login",
   data() {
     return {
       title: "",
